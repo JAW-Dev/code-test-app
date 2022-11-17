@@ -4,55 +4,64 @@ import Pane from './Pane';
 
 function Table({ members }) {
 	const headers = [
-		{ key: 'id', label: 'ID' },
-		{ key: 'name', label: 'Name' },
-		{ key: 'email', label: 'Email' },
-		{ key: 'phone', label: 'Phone' },
-		{ key: 'date_created', label: 'Date Created' },
-		{ key: 'date_updated', label: 'Date Updated' },
-		{ key: 'sub_name', label: 'Subscription' },
-		{ key: 'sub_id', label: 'Subscription ID' },
+		{ key: 'id', label: 'ID', class: 'full-cell' },
+		{ key: 'name', label: 'Name', class: 'full-cell' },
+		{ key: 'email', label: 'Email', class: 'mobile-cell' },
+		{ key: 'phone', label: 'Phone', class: 'mobile-cell' },
+		{ key: 'date_created', label: 'Date Created', class: 'mobile-cell' },
+		{ key: 'date_updated', label: 'Date Updated', class: 'mobile-cell' },
+		{ key: 'sub_id', label: 'Subscription ID', class: 'mobile-cell' },
+		{ key: 'sub_name', label: 'Subscription', class: 'full-cell' }
 	];
 
-	const dateOptions = { year: "numeric", month: "long", day: "numeric" };
 	const [subscriptionPane, setSubscriptionPane] = useState({ visible: false, data: members });
+	const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+	const dateFormat = (date) => {
+		return new Date(date).toLocaleDateString('en-us', dateOptions)
+	}
+	const closePane = () => {
+		setSubscriptionPane({ visible: false })
+	}
 
 	return (
 		<>
 			<h1>Members</h1>
-			<Pane
-				visible={subscriptionPane.visible}
-				data={subscriptionPane.data}
-				closePane={() => setSubscriptionPane({ visible: false })} />
 			<table className="table">
 				<thead className="thead">
 					<tr>
 						{headers.map(header => {
 							return (
-								<td key={header.key}>{header.label}</td>
+								<td key={header.key} className={header.class}>{header.label}</td>
 							)
 						})}
 					</tr>
 				</thead>
 				<tbody className="tbody">
 					{members.map(member => {
-						const memberCreatedDate = new Date(member.created_at).toLocaleDateString('en-us', dateOptions);
-						const memberUpdatedDate = new Date(member.updated_at).toLocaleDateString('en-us', dateOptions);
+						const openPanel = () => {
+							setSubscriptionPane({ visible: true, data: member.subscription })
+						}
 						return (
 							<tr key={member.id}>
 								<td>{member.id}</td>
 								<td>{member.name}</td>
-								<td>{member.email}</td>
-								<td>{member.phone}</td>
-								<td>{memberCreatedDate}</td>
-								<td>{memberUpdatedDate}</td>
-								<td><a onClick={() => setSubscriptionPane({ visible: true, data: member.subscription })} id="modal-button">{member.subscription.name}</a></td>
-								<td><a onClick={() => setSubscriptionPane({ visible: true, data: member.subscription })} id="modal-button">{member.subscription_id}</a></td>
+								<td className="mobile-cell">{member.email}</td>
+								<td className="mobile-cell">{member.phone}</td>
+								<td className="mobile-cell">{dateFormat(member.created_at)}</td>
+								<td className="mobile-cell">{dateFormat(member.updated_at)}</td>
+								<td className="mobile-cell"><button onClick={openPanel} id="modal-button">{member.subscription_id}</button></td>
+								<td><button onClick={openPanel} id="modal-button">{member.subscription.name}</button></td>
 							</tr>
 						)
 					})}
 				</tbody>
 			</table>
+			<Pane
+				visible={subscriptionPane.visible}
+				data={subscriptionPane.data}
+				closePane={closePane}
+				dateFormat={dateFormat}
+			/>
 		</>
 	);
 }

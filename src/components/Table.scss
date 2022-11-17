@@ -22,8 +22,24 @@ $border-color: #333333;
 		border-top: 1px solid $border-color;
 	}
 
+	.thead {
+		td {
+			font-weight: bold;
+		}
+	}
+
 	.tbody tr:last-child > td {
 		border-bottom: none;
+	}
+
+	.mobile-cell{
+		display: table-cell;
+	}
+
+	@media screen and (max-width: 904px) {
+		.mobile-cell{
+			display:none;
+		}
 	}
 }
 
