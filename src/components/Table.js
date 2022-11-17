@@ -2,6 +2,13 @@ import { useState } from 'react';
 import './Table.scss';
 import Pane from './Pane';
 
+/**
+ * The Table component
+ *
+ * @param {object} members
+ *
+ * @returns string
+ */
 function Table({ members }) {
 	const headers = [
 		{ key: 'id', label: 'ID', class: 'full-cell' },
@@ -15,10 +22,14 @@ function Table({ members }) {
 	];
 
 	const [subscriptionPane, setSubscriptionPane] = useState({ visible: false, data: members });
+
+	// Format the date string
 	const dateOptions = { year: "numeric", month: "long", day: "numeric" };
 	const dateFormat = (date) => {
 		return new Date(date).toLocaleDateString('en-us', dateOptions)
 	}
+
+	// Function for closing the panel
 	const closePane = () => {
 		setSubscriptionPane({ visible: false })
 	}
@@ -37,6 +48,9 @@ function Table({ members }) {
 					</tr>
 				</thead>
 				<tbody className="tbody">
+					{/*
+						Loop through the member data and build the table
+					*/}
 					{members.map(member => {
 						const openPanel = () => {
 							setSubscriptionPane({ visible: true, data: member.subscription })
