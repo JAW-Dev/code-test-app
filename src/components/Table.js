@@ -37,7 +37,7 @@ function Table({ members }) {
 	return (
 		<>
 			<h1>Members</h1>
-			<table className="table" role="table" aria-label="Semantic Elements">
+			<table className="table" role="table" aria-label="Semantic Elements" aria-colcount="8">
 				<thead className="thead" role="rowgroup">
 					<tr role="row">
 						{headers.map(header => {
