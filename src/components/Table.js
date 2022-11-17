@@ -8,8 +8,8 @@ function Table({ members }) {
 		{ key: 'name', label: 'Name', class: 'full-cell' },
 		{ key: 'email', label: 'Email', class: 'mobile-cell' },
 		{ key: 'phone', label: 'Phone', class: 'mobile-cell' },
-		{ key: 'date_created', label: 'Date Created', class: 'mobile-cell' },
-		{ key: 'date_updated', label: 'Date Updated', class: 'mobile-cell' },
+		{ key: 'date_created', label: 'Created', class: 'mobile-cell' },
+		{ key: 'date_updated', label: 'Updated', class: 'mobile-cell' },
 		{ key: 'sub_name', label: 'Subscription', class: 'full-cell' },
 		{ key: 'sub_id', label: 'Subscription ID', class: 'mobile-cell' }
 	];
