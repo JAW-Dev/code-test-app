@@ -6,6 +6,7 @@ $border-color: #333333;
   border-radius: 7px;
   border-spacing: 0;
 	border-collapse: separate;
+	box-shadow: 0 0 40px 0 rgb(0 0 0 / 15%);
 
 	td, th {
     border-bottom: 1px solid $border-color;
@@ -30,12 +31,12 @@ $border-color: #333333;
 	}
 
 	.thead {
-		td {
-			text-align: center;
-		}
+		background-color: #6c7ae0;
+		color: white;
 
 		td {
 			font-weight: bold;
+			border: none;
 		}
 	}
 
