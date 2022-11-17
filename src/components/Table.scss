@@ -10,11 +10,18 @@ $border-color: #333333;
 	td, th {
     border-bottom: 1px solid $border-color;
 		border-right: 1px solid $border-color;
-    padding: 0.5rem;
-    text-align: center;
+    padding: 0.7rem;
 
 		&:last-child {
 			border-right: none;
+		}
+	}
+
+	td {
+		text-align: left;
+
+		&:nth-of-type(1) {
+			text-align: center;
 		}
 	}
 
@@ -23,6 +30,10 @@ $border-color: #333333;
 	}
 
 	.thead {
+		td {
+			text-align: center;
+		}
+
 		td {
 			font-weight: bold;
 		}
@@ -52,5 +63,5 @@ $border-color: #333333;
 h1 {
 	font-size: 2rem;
 	font-weight: bold;
-	margin-bottom: 1rem;
+	margin: -0.7rem 0 1.5rem;
 }

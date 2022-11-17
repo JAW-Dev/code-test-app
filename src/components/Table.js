@@ -10,8 +10,8 @@ function Table({ members }) {
 		{ key: 'phone', label: 'Phone', class: 'mobile-cell' },
 		{ key: 'date_created', label: 'Date Created', class: 'mobile-cell' },
 		{ key: 'date_updated', label: 'Date Updated', class: 'mobile-cell' },
-		{ key: 'sub_id', label: 'Subscription ID', class: 'mobile-cell' },
-		{ key: 'sub_name', label: 'Subscription', class: 'full-cell' }
+		{ key: 'sub_name', label: 'Subscription', class: 'full-cell' },
+		{ key: 'sub_id', label: 'Subscription ID', class: 'mobile-cell' }
 	];
 
 	const [subscriptionPane, setSubscriptionPane] = useState({ visible: false, data: members });
@@ -49,8 +49,8 @@ function Table({ members }) {
 								<td className="mobile-cell">{member.phone}</td>
 								<td className="mobile-cell">{dateFormat(member.created_at)}</td>
 								<td className="mobile-cell">{dateFormat(member.updated_at)}</td>
-								<td className="mobile-cell"><button onClick={openPanel} id="modal-button">{member.subscription_id}</button></td>
 								<td><button onClick={openPanel} id="modal-button">{member.subscription.name}</button></td>
+								<td className="mobile-cell"><button onClick={openPanel} id="modal-button">{member.subscription_id}</button></td>
 							</tr>
 						)
 					})}
