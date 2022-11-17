@@ -38,7 +38,7 @@ function Table({ members }) {
 		<>
 			<h1>Members</h1>
 			<table className="table" role="table" aria-label="Semantic Elements" aria-colcount="8">
-				<thead className="thead" role="rowgroup">
+				<thead className="thead">
 					<tr role="row">
 						{headers.map(header => {
 							return (
@@ -47,7 +47,7 @@ function Table({ members }) {
 						})}
 					</tr>
 				</thead>
-				<tbody className="tbody" role="rowgroup">
+				<tbody className="tbody">
 					{/*
 						Loop through the member data and build the table
 					*/}
