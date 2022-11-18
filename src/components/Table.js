@@ -23,6 +23,9 @@ function Table({ members = [] }) {
 
 	const [subscriptionPane, setSubscriptionPane] = useState({ visible: false, data: members });
 
+	// Bail if API data is empty
+	if (!members || members.length === 0) return null;
+
 	// Format the date string
 	const dateFormat = (date) => new Date(date).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" });
 
