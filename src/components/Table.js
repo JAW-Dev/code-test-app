@@ -24,15 +24,10 @@ function Table({ members = [] }) {
 	const [subscriptionPane, setSubscriptionPane] = useState({ visible: false, data: members });
 
 	// Format the date string
-	const dateOptions = { year: "numeric", month: "long", day: "numeric" };
-	const dateFormat = (date) => {
-		return new Date(date).toLocaleDateString('en-us', dateOptions)
-	}
+	const dateFormat = (date) => new Date(date).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" });
 
 	// Function for closing the panel
-	const closePane = () => {
-		setSubscriptionPane({ visible: false })
-	}
+	const closePane = () => setSubscriptionPane({ visible: false });
 
 	let pane;
 
@@ -59,7 +54,7 @@ function Table({ members = [] }) {
 							setSubscriptionPane({ visible: true, data: member.subscription })
 						}
 
-						// Render button and pane if has subscription data
+						// Render buttons and pane if has subscription data
 						if ((member.subscription && member.subscription.length !== 0)) {
 							subButton = <button onClick={openPanel} id="modal-button">{member.subscription.name}</button>;
 							subIdButton = <button onClick={openPanel} id="modal-button">{member.subscription_id}</button>;

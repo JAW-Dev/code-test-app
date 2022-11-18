@@ -29,9 +29,7 @@ function Pane({ data, visible = false, closePane = () => { }, dateFormat = () =>
 			width={window.innerWidth < 600 ? "100%" : "500px"}
 			onRequestClose={closePane}
 		>
-			{/*
-				All the data is optional to stop the errors when closing the panel
-			*/}
+			{/* All the data is optional to stop the errors when closing the panel */}
 			<div className="subscription-item"><strong>Name:</strong> {data?.name}</div>
 			<div className="subscription-item"><strong>Price:</strong> {currencyFormat(data?.price)}</div>
 			<div className="subscription-item"><strong>Created:</strong> {dateFormat(data?.created_at)}</div>
