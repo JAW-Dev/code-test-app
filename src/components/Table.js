@@ -34,6 +34,8 @@ function Table({ members }) {
 		setSubscriptionPane({ visible: false })
 	}
 
+	let pane;
+
 	return (
 		<>
 			<h1>Members</h1>
@@ -48,37 +50,39 @@ function Table({ members }) {
 					</tr>
 				</thead>
 				<tbody className="tbody">
-					{/*
-						Loop through the member data and build the table
-					*/}
+					{/* Loop through the member data and build the table */}
 					{members.map(member => {
+						let subButton = 'There is no Subscription';
+						let subIdButton = 'N/A';
+
 						const openPanel = () => {
 							setSubscriptionPane({ visible: true, data: member.subscription })
 						}
+
+						// Render button and pane if has subscription data
+						if ((member.subscription && member.subscription.length !== 0)) {
+							subButton = <button onClick={openPanel} id="modal-button">{member.subscription.name}</button>;
+							subIdButton = <button onClick={openPanel} id="modal-button">{member.subscription_id}</button>;
+							pane = <Pane visible={subscriptionPane.visible} data={subscriptionPane.data} closePane={closePane} dateFormat={dateFormat} />;
+						}
+
 						return (
 							<tr key={member.id} role="row">
-								{/*
-									Cells with the mobile-cell class get removed on mobile views
-								*/}
+								{/* Cells with the mobile-cell class get removed on mobile views */}
 								<td role="cell">{member.id}</td>
 								<td role="cell">{member.name}</td>
 								<td className="mobile-cell" role="cell">{member.email}</td>
 								<td className="mobile-cell" role="cell">{member.phone}</td>
 								<td className="mobile-cell" role="cell">{dateFormat(member.created_at)}</td>
 								<td className="mobile-cell" role="cell">{dateFormat(member.updated_at)}</td>
-								<td role="cell"><button onClick={openPanel} id="modal-button">{member.subscription.name}</button></td>
-								<td role="cell" className="mobile-cell"><button onClick={openPanel} id="modal-button">{member.subscription_id}</button></td>
+								<td role="cell">{subButton}</td>
+								<td role="cell" className="mobile-cell">{subIdButton}</td>
 							</tr>
 						)
 					})}
 				</tbody>
 			</table>
-			<Pane
-				visible={subscriptionPane.visible}
-				data={subscriptionPane.data}
-				closePane={closePane}
-				dateFormat={dateFormat}
-			/>
+			{pane}
 		</>
 	);
 }

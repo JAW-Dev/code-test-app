@@ -18,6 +18,9 @@ function Pane({ visible, data, closePane, dateFormat }) {
 		return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(currency);
 	}
 
+	// Bail if data is empty
+	if (!data) return null;
+
 	return (
 		<SlidingPane
 			className='pane'

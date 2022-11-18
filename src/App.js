@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   // Bail if API data is empty
-  if (!members) return null;
+  if (!members || members.length === 0) return (<h2>'There is no members data!'</h2>);
 
   return (
     <div className="app">
