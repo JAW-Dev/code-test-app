@@ -12,7 +12,7 @@ import "./Pane.scss";
  *
  * @returns string
  */
-function Pane({ visible, data, closePane, dateFormat }) {
+function Pane({ data, visible = false, closePane = () => { }, dateFormat = () => { } }) {
 	// Format the currency
 	const currencyFormat = (currency) => {
 		return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(currency);

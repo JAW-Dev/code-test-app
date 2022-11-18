@@ -9,7 +9,7 @@ import Pane from './Pane';
  *
  * @returns string
  */
-function Table({ members }) {
+function Table({ members = [] }) {
 	const headers = [
 		{ key: 'id', label: 'ID', class: 'full-cell' },
 		{ key: 'name', label: 'Name', class: 'full-cell' },
