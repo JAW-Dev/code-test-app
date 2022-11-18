@@ -37,6 +37,7 @@ function Table({ members = [] }) {
 			<table className="table" role="table" aria-label="Semantic Elements" aria-colcount="8">
 				<thead className="thead">
 					<tr role="row">
+						{/* Loop through the headers data and build the table head */}
 						{headers.map(header => {
 							return (
 								<th key={header.key} className={header.class} role="columnheader">{header.label}</th>
@@ -45,7 +46,7 @@ function Table({ members = [] }) {
 					</tr>
 				</thead>
 				<tbody className="tbody">
-					{/* Loop through the member data and build the table */}
+					{/* Loop through the member data and build the table body */}
 					{members.map(member => {
 						let subButton = 'There is no Subscription';
 						let subIdButton = 'N/A';
